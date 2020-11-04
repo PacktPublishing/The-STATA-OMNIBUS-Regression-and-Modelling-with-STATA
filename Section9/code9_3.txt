@@ -1,0 +1,20 @@
+*Load auto data
+sysuse auto
+
+*Correlate price, mpg and weight against each other and report pearson's correlation coefficient
+correlate price mpg weight
+
+*Correlate price, mpg and weight against each other and report variance/covariances
+correlate price mpg weight, cov
+
+*Correlate price, mpg and weight using pairwise deletion
+pwcorr price mpg weight
+
+*Correlate price, mpg and weight using pairwise deletion and report statistical significance
+pwcorr price mpg weight, sig
+
+*Generate dummy variables from rep78
+tab rep78, gen(dummy)
+
+*Compute tetrachoric correlation for six dummy variables
+tetrachoric foreign dummy1 dummy2 dummy3 dummy4 dummy5  

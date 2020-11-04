@@ -1,0 +1,32 @@
+clear
+
+*set observations to 1000
+set obs 1000
+
+*generate random variables
+gen x1 = rnormal()
+gen x2 = rnormal()
+gen e1 = rnormal()
+
+*generate variable y as a function of all previous variables
+gen y = 1 + 1*x1 - 1*x2 + 1*e1
+
+*estimate the relationship between x1, x2 and y assuming e is observable
+regress y x1 x2 e1
+
+*estimate the relationship between x1, x2 and y assuming e is unobservable
+regress y x1 x2
+
+*a non-linear, probit, example
+*generate latent score, yhat
+gen ystar = 1 + 1*x1 - 1*x2 + 1*e1
+
+*generate observed value of y as a function of yhat
+gen ybinary = 1 if ystar > 0
+replace ybinary = 0 if ystar <= 0
+
+*tabulate yhat
+tab ybinary
+
+*regress ybinary against x1 and x2 using a probit model
+probit ybinary x1 x2

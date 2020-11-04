@@ -1,0 +1,64 @@
+*Load Auto training data
+sysuse auto, clear
+
+*Set random number seed for replication
+set seed 1234 
+
+*Generate additional missing data
+*Make MPG missing data random
+replace mpg = . if uniform()>0.95
+*Make Length missing data a function of trunk and turn
+reg length trunk turn
+predict yhat
+replace length = . if yhat > 210
+drop yhat
+
+*Install user-written package to perform Little's test
+net install "http://www.stata-journal.com/software/sj13-4/st0318.pkg", replace
+
+*Describe missing values in data
+misstable summarize
+misstable patterns, freq
+
+*Initial regression with row deletion of missing values
+reg price length mpg i.rep78 weight 
+estimates store a1
+
+*Missing Completly At Random test for missing variables
+mcartest length mpg rep78 weight
+mcartest mpg weight
+
+*Regression with only MCAR variables
+reg price mpg weight
+estimates store a2
+
+*Regression with column deletion for all missing values
+reg price weight 
+estimates store a3
+
+*Regression with categorical missing values changed to new missing category
+recode rep78 . = 99
+tab rep78
+reg price length mpg i.rep78 weight 
+estimates store a4
+
+*Regression with mean imputation
+su mpg
+replace mpg =  r(mean) if mpg == .
+su mpg
+reg price length mpg i.rep78 weight 
+estimates store a4
+
+*Regression with regression based imputation
+reg length trunk turn
+predict yhat
+su yhat
+su yhat if length == .
+replace length = yhat if length == .
+reg price length mpg i.rep78 weight 
+estimates store a5
+
+*Tabulate all estimates
+esttab a1 a2 a3 a4 a5 , b(0) compress nogap not
+
+

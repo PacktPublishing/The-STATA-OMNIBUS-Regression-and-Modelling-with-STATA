@@ -1,0 +1,45 @@
+*Load training data
+sysuse auto, clear
+
+*Set seed
+set seed 1234
+
+*Examine pairwise correlations
+pwcorr mpg length weight
+
+*Base regression
+reg price mpg length weight, beta
+vif
+
+*Generate two collinear variables
+gen length2 = rnormal()+length
+gen length3 = rnormal()+length
+
+pwcorr mpg length length2 length3 weight
+
+*Regression with 3 collinear variables
+reg price mpg length length2 length3 weight
+vif
+
+*Step wise regression
+stepwise, pr(0.1): reg price (mpg weight) length length2 length3
+
+*Principal Component Analysis
+pca length length2 length3
+predict pc1, score
+
+reg price mpg pc1 weight, beta
+
+*Rgeression with a polynomial
+reg price mpg c.length##c.length weight
+margins, at(length=(142(10)233))
+marginsplot
+vif
+
+*Centering or demeaning polynomials variables
+egen mean_length = mean(length)
+generate demeaned_length = length - mean_length
+reg price mpg c.demeaned_length##c.demeaned_length  weight
+vif
+margins, at(demeaned_length=(-42(10)45))
+marginsplot

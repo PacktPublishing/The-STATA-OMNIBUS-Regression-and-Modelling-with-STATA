@@ -1,0 +1,31 @@
+*Load auto data
+sysuse auto, clear
+
+*Histogram help entry
+help histogram
+*Histogram of price
+histogram price
+*Histogram of price with 20 bins
+histogram price, bin(20)
+*Histogram of price with bins of width 500
+histogram price, width(5000)
+
+*Histogram help entry
+help kdensity
+*Kernel density plot of price
+kdensity price
+*Kernel density plot of price with smaller bandwidth
+kdensity price, bw(100)
+
+*Quantile plot of price 
+quantile price
+
+*Boxplot help entry
+help graph box
+*Boxplot of price and weight
+graph box price weight
+*Boxplot of price and weight over foreign
+graph box price weight, over(foreign)
+
+*Ladders of power
+gladder price

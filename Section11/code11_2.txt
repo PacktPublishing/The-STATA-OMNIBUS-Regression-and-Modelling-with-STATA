@@ -1,0 +1,28 @@
+*Load auto data
+sysuse auto, clear
+
+*Estimate logit model
+logit foreign price mpg weight
+
+*Produce the classification table
+estat classification
+
+*Produce the classification table with a cut point at 0.3
+estat classification, cut(0.3)
+
+*Compute Tjur's statistic (the difference between two predicted means)
+predict yhat
+ttest yhat, by(foreign)
+
+*Estimate a logit model with odds-ratio's
+logit foreign price mpg weight, or
+
+*Examines margins help file
+help margins
+
+*Compute average marginal effects for all variables
+margins, dydx(*)
+
+*Compute marginal effects for all variables at the mean of all variables
+margins, dydx(*) atmeans
+

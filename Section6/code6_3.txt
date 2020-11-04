@@ -1,0 +1,15 @@
+*Load the auto data set
+sysuse auto, clear
+
+*Describe the data and variables
+describe
+
+*Describe only variables that have a 'p' in their variable name
+describe *p*
+
+*Produce summary statistics for all variables
+summarize
+
+*Produce summary statistics for the variable price if cars are foreign or domestic
+summarize price if foreign == 1
+summarize price if foreign == 0

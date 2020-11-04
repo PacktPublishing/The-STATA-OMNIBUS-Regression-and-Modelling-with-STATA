@@ -1,0 +1,20 @@
+*Load auto data
+sysuse auto, clear
+
+*A OLS regression of price
+reg price mpg length i.foreign i.rep78
+
+*Test whether the coefficent on mpg is equal to 100
+test mpg = 100
+
+*Test whether the coefficent on mpg is equal to the coefficient on length
+test mpg = length
+
+*Group test that all repair variables are jointly different from 0
+test 2.rep78 3.rep78 4.rep78 5.rep78
+
+*shortcut to group test
+testparm i.rep78
+
+*Linear combination of all rep78 variables
+lincom 2.rep78+3.rep78+4.rep78+5.rep78

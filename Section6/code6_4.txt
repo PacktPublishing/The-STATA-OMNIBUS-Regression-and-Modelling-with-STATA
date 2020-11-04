@@ -1,0 +1,34 @@
+*Load the auto data
+sysuse auto, clear
+
+*Initial summary
+summarize
+
+*Help tabulate
+help tabulate
+
+*One-way tabulate repair record and foreign
+tab rep78
+tab foreign
+
+*One-way tabulate foreign with no-labels
+tab foreign, nolabel
+
+*One-way tabulate repair record with missing option
+tab rep78, missing
+
+*Two-way tabulate repair record and foreign
+tab rep78 foreign
+
+*Two-way tabulate repair record and foreign with row/column percentages
+tab rep78 foreign, col row
+
+*Two-way tabulate repair record and foreign summary statistics of price
+tab rep78 foreign, su(price)
+
+*Use table to create a three-way tabulation
+table rep78 headroom foreign, contents(freq)
+
+*Use tabstat to create a custom table with statistics
+tabstat mpg rep78 headroom trunk, statistics(mean count) by(foreign) 
+

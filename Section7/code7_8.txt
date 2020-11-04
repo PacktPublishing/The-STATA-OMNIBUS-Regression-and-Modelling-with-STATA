@@ -1,0 +1,41 @@
+*Open string data
+webuse destring1, clear
+
+*Explore string example data
+list
+su
+describe
+
+*Condition on string information
+list if id == "111"
+
+*Insert a non-numeric character
+replace income = "abc" in 7
+
+*Destring income with replace option
+destring *, replace
+su 
+
+*Destring income and use the force option
+destring income, replace force
+su
+
+*Return income and price back to string variables 
+tostring *, replace
+
+*Open other string data
+webuse hbp2, clear
+
+*Explore data
+describe 
+tab sex, nolabel
+
+*Destring sex with encode
+encode sex, generate(gender)
+tab gender, nolabel
+
+*Return gender back into a string variable with decode
+decode gender, gen(test)
+tab test
+
+

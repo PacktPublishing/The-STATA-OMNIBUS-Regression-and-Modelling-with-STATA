@@ -1,0 +1,29 @@
+*Load auto data
+sysuse auto, clear
+
+*Specify a baseline OLS regression
+reg price mpg length i.foreign
+
+*Generate the log of price
+gen logprice = log(price)
+
+*Use logprice as the dependent variable in a new OLS regression
+reg logprice mpg turn length i.foreign
+
+*Add a quadratic relationship between price and mpg to the OLS model
+reg logprice c.mpg##c.mpg turn length i.foreign
+
+*Predict the values of logprice at various mpg values
+margins, at(mpg=(0(2)40))
+
+*Plot the values obtained by margin on a graph
+marginsplot
+
+*Add a squared mpg term and also interaction the foreign variable 
+reg logprice c.mpg##c.mpg##i.foreign turn length 
+
+*Predict the values of logprice at various mpg values
+margins foreign, at(mpg=(0(2)40))
+
+*Plot the values obtained by margin on a graph
+marginsplot

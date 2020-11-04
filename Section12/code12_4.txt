@@ -1,0 +1,24 @@
+clear
+
+*Monte Carlo Simulation
+*Write a custom programme that generates a random data structure and then estimates OLS
+program define test, rclass
+	clear
+	set obs 1000
+	gen e1 = rnormal()
+	gen x1 = rnormal()
+	gen x2 = rnormal() + 1*e1
+	gen y = 1 + 1*x1 + 1*x2 + 1*e1
+	reg y x1 x2
+end
+
+*Execute new programme test
+test
+
+*Use the simulate command to run the programme "simulate1" 1000 times
+simulate, reps(500): test
+
+*Explore the simulation results
+summarize
+
+tw (kdensity _b_x1, xline(1)) (kdensity _b_x2)

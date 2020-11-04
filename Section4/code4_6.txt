@@ -1,0 +1,31 @@
+*Run a base regression 
+reg price mpg i.foreign i.rep78
+
+margins, at(mpg=(12(2)41))
+marginsplot
+
+*Regression with a continous by categorical interaction
+reg price c.mpg##i.foreign i.rep78
+
+margins foreign, at(mpg=(12(2)41))
+marginsplot
+
+*Regression with a continous polynomial by categorical interaction
+reg price c.mpg##c.mpg##i.foreign i.rep78
+
+margins foreign, at(mpg=(12(2)41))
+marginsplot
+
+*Regression with a categorical by categorical interaction
+recode mpg 12/20 = 1 20/30 = 2 30/max = 3, gen(mpg2)
+
+reg price i.mpg2##i.foreign i.rep78
+
+margins mpg2#foreign
+marginsplot
+
+*Regression with a continous by continous interaction
+reg price c.mpg##c.weight i.foreign i.rep78
+
+margins, at(mpg=(12(2)41) weight=(1750(1000)5000))
+marginsplot

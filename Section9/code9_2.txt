@@ -1,0 +1,23 @@
+*Load the auto data
+sysuse auto
+
+*Summarize price
+su price 
+
+*Test whether the mean of price is different from 2000
+ttest price = 2000
+
+*Test whether the standard deviation of price is different from 3000
+sdtest price = 3000
+
+*Test whether the proportion of foreign is different from 0.5
+prtest foreign = 0.5
+
+*Test whether the mean of price differs by foreign status
+ttest price, by(foreign)
+
+*Test whether the set of means of price, mpg and weight differs by foreign
+hotelling price mpg weight, by(foreign)
+
+* Graph means by categorical variables
+grmeanby rep78 foreign, su(price)

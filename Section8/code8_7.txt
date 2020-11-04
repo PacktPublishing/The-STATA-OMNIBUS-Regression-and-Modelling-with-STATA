@@ -1,0 +1,33 @@
+*Load Sandstone training data
+sysuse sandstone
+
+*Explore the raw data with browse
+browse 
+
+*Help contour plot
+help twoway contour 
+
+*Create a contour plot
+twoway contour depth northing easting
+
+*Create a contour plot with 20 levels
+twoway contour depth northing easting, levels(20)
+
+*Create a contour plot with 20 levels with 5 legend levels
+twoway contour depth northing easting, levels(20) zlabel(#5)
+
+*Use auto data
+sysuse auto
+
+*Run regression with continuous by continuous interaction
+reg price c.mpg##c.length weight
+
+*Predict price at across mpg and length and save to new dataset
+quietly margins, at(mpg=(12(5)41) length=(142(5)233))  saving(predictions, replace)
+
+*Use new dataset
+use predictions, clear
+describe
+
+*User contour plor to visualuse interactin effect
+twoway contour _margin _at1 _at2 , levels(20)

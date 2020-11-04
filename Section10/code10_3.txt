@@ -1,0 +1,39 @@
+
+*load the data
+sysuse auto, clear
+
+*run model 1
+reg price mpg length turn i.foreign
+
+*Help file for postestimation 
+help regress postestimation
+
+*graphical diagnostics
+	*normality of error term
+	predict resid, resid
+	predict xb, xb
+	su price xb resid
+	tw (kdensity price) ( kdensity xb)
+	tw (kdensity resid)
+	*residuals vs fitted plot
+	sc resid xb, yline(0)
+	rvfplot, yline(0)
+	*influential outliers
+	lvr2plot
+	*graph matrix plot
+	graph matrix price mpg length turn
+
+*statistical diagnostics
+	*summary statistics
+	estat su
+	*multicollinearity
+	estat vif
+	estat vce, corr
+	*heteroskedasticity
+	estat hettest
+	estat hettest, rhs mtest
+	*functional form
+	estat ovtest
+	*effect size
+	estat esize
+	estat esize, omega

@@ -1,0 +1,17 @@
+*Load auto data
+sysuse auto
+
+*One way analysis of variance using oneway
+oneway price rep78, tabulate
+
+*One way analysis of variance using ANOVA
+anova price rep78
+
+*Regression table from a one-way ANOVA
+regress, baselevels
+
+*Two-way ANOVA
+anova price rep78 foreign
+
+*Two-way full factorial ANOVA
+anova price rep78##foreign

@@ -1,0 +1,30 @@
+*Load auto data
+sysuse auto, clear
+
+*Help macro
+help macro
+
+*Creating a local macro that contains a variable list as string
+local varlist "price mpg rep78"
+su `varlist'
+reg length `varlist'
+
+*Creating a local macro that contains a variable list as string 
+global varlist "price mpg rep78"
+su $varlist
+reg length $varlist
+
+*Help foreach
+help foreach
+
+*A simple loop
+foreach i in price mpg rep78 {
+gen log`i' = log(`i')
+su log`i'
+}
+
+*A loop with forvalues
+forvalues i = 1/20 {
+	gen x`i' = rnormal()
+	}
+su x*	

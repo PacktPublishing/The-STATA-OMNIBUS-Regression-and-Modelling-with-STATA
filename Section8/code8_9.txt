@@ -1,0 +1,32 @@
+*Load auto data
+sysuse auto, clear
+
+*Generate two exemplar scatter plots with linear fits and store in memory (replace if already stored)
+tw (scatter price mpg) (qfit price mpg), name(graph1, replace) 
+tw (scatter price weight) (qfit price weight), name(graph2, replace) 
+
+*Examine graphs in memory
+graph dir
+graph describe graph1 
+
+*Help graph combine
+help graph combine
+
+*Combine both memory graphs
+graph combine graph1 graph2
+
+*Combine both memory graphs forcing a common y- and x-axis
+graph combine graph1 graph2, ycommon xcommon
+
+*Combine both memory graphs forcing a common y- and x-axis and shrink text appropriately
+graph combine graph1 graph2, ycommon altshrink
+
+*Combine both memory graphs forcing a common y- and x-axis and shrink text manually
+graph combine graph1 graph2, ycommon iscale(1.2)
+
+*Combine both memory graphs forcing a common y- and x-axis, shrink text appropriately and use only 1 column
+graph combine graph1 graph2, ycommon altshrink col(1)
+
+*Combine both memory graphs forcing a common y- and x-axis, shrink text appropriately and use leave a hole at position 2 and 3
+graph combine graph1 graph2, ycommon altshrink hole(2 3)
+

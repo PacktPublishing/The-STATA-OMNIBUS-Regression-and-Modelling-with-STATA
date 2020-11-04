@@ -1,0 +1,28 @@
+*Clear data
+clear
+*Set 1000 observations
+set seed 1234
+set obs 200
+*Generate count variable that is Poisson distributed with mean of 0.61
+gen count = rpoisson(0.61)
+*Tabulate count data
+tab count
+*Summarize count data
+su count, d
+
+
+*Clear data
+clear
+*Load count data
+webuse dollhill3
+*Describe data
+describe
+*Tabulate deaths
+tab deaths 
+*Regress deaths on smoking and age using OLS
+reg deaths smokes i.agecat
+*predict count
+predict count
+*Tabulate count 
+tab count
+

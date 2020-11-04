@@ -1,0 +1,22 @@
+*Stata functions
+help functions
+
+*Draw a custom function y = sin(x)
+tw (function y = sin(x))
+tw (function y = sin(x), range(0 10))
+
+*Draw an equation
+tw (function y = 1 + 2*x + 3*x^2, range(-5 5))
+
+*Draw the logitistic cumulative density function
+tw (function y = logistic(x), range(-5 5))
+
+*Load auto data
+sysuse auto, clear
+
+*Run regressiom
+reg price c.mpg##c.mpg
+
+*Plot regression coefficients on custom function
+*general form: tw (function y = a + b*x + c*x^2, range(0 50)
+tw (function y = _b[_cons] + _b[mpg]*x + _b[c.mpg#c.mpg]*x^2, range(mpg))

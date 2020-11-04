@@ -1,0 +1,27 @@
+*Load data
+use "/Users/buschaf/Dropbox/Udemy/Data Analytics with Stata/Count Models/6.2 Poisson regression/count.dta", clear
+
+*Describe data
+describe
+
+*Tabulate count variable
+tab docvis
+
+*Help Poisson
+help poisson
+
+*Estimate poisson model 
+poisson docvis age educyr income female
+
+*Compute (average) marginal effects
+margins, dydx(*)
+
+*Examine goodness-of-fit statistics
+estat gof
+
+*Install overdispersion command
+net install "http://fmwww.bc.edu/RePEc/bocode/o/overdisp.pkg", replace
+
+*Conduct formal test of equidispersion of model
+overdisp docvis age educyr income female
+

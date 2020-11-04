@@ -1,0 +1,31 @@
+*Describe data
+describe
+
+*Browse data
+browse
+
+*Set panel data
+xtset idcode year
+
+*Examine time
+tab year
+xtdescribe
+
+*Regression analysis without time
+reg ln_wage south grade age, cluster(idcode)
+
+*Regression analysis with time as an explanatory variable
+reg ln_wage south grade age year, cluster(idcode)
+margins, at(year=(68(1)88))
+marginsplot
+
+reg ln_wage south grade age i.year, cluster(idcode)
+margins year
+marginsplot
+
+*Regression analysis with lags
+reg ln_wage l(0/3).south grade age year, cluster(idcode)
+lincom south+l1.south+l2.south
+
+*Regression analysis with lags
+reg d.ln_wage d.south d.grade d.age d.year, cluster(idcode)

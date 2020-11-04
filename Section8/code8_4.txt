@@ -1,0 +1,17 @@
+*Load auto data
+sysuse auto
+
+*Tabulate repair record
+tab rep78
+
+*Pie chart help
+help graph pie
+
+*Pie chart of repair record
+graph pie, over(rep78)
+
+*Pie chart of repair record with missing as category, exploded and with percentage labels
+graph pie, over(rep78) missing pie(_all, explode) plabel(_all percent)
+
+*Pie chart of repair record with missing as category, exploded and with percentage labels by foreign status
+graph pie foreign, over(rep78) missing pie(_all, explode) plabel(_all percent) by(foreign)

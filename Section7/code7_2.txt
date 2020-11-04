@@ -1,0 +1,23 @@
+*Load auto data
+sysuse auto,clear 
+
+*Generate a variable that is filled with the number 1
+gen constant = 1
+
+*Generate the variable newprice that is equal to price divided by weight
+gen newprice = price/weight
+
+*Generate the variable pricesquared that is equal to price multiplied by price
+gen pricesquared = price*price
+
+*Generate the variable price1000 that is equal to price plus 1000
+gen price1000 = price+1000
+
+*Summarize 
+su
+
+*Generate the variable logprice that is equal to the log of price
+gen logprice = log(price)
+
+*Replace repair code value 2 with the value 1.
+replace rep78 = 1 if rep78 == 2

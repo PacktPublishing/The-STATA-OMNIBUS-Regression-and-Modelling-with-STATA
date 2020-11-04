@@ -1,0 +1,20 @@
+*Load the auto data
+sysuse auto, clear
+
+*Check current directory path
+cd
+
+*Change current directory path
+cd "/Users/buschaf/Data"
+
+*Save the auto data as auto2
+save auto2, replace
+
+*Save the auto data to a directory path with the replace option
+save "/Users/buschaf/Data/auto2", replace
+
+*Help export
+help export
+
+*Export data to excel file
+export excel "/Users/buschaf/Data/auto2", replace

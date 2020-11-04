@@ -1,0 +1,26 @@
+*Using HELP in Stata
+*EXAMPLES
+
+*Help for ordinary least squares regression
+help regression
+
+*Help for graphs in Stata
+help graph
+
+*Help for summary statistics
+help summarize
+
+*Help with tabulation
+help tabulate
+
+*Help on updating Stata
+help update
+
+*Help on basic concepts
+help guide
+
+*See all Stata's functions
+help functions
+
+*Look for something you don't know the command for 
+help bivariate probit

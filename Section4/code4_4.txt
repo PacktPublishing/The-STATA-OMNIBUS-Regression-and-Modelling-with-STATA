@@ -1,0 +1,18 @@
+* Summarize data
+summarize
+
+* 4 Regressions with different order polynomials
+reg HOURPAY c.AGE c.SCHOOL
+
+reg HOURPAY c.AGE##c.AGE c.SCHOOL
+
+reg HOURPAY c.AGE##c.AGE##c.AGE c.SCHOOL
+
+reg HOURPAY c.AGE##c.AGE##c.AGE##c.AGE c.SCHOOL
+
+* Plotting the results
+margins, at(AGE=(16(2)70) SCHOOL=13) 
+marginsplot
+
+* Collinearity test
+vif

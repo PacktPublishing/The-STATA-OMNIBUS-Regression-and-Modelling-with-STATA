@@ -1,0 +1,25 @@
+*Help log command
+help log
+
+*Start a log file
+log using log1
+
+*Some code
+sysuse auto, clear
+su
+gen x = 1
+
+*Close the log file
+log close
+
+*View the log file
+view log1.smcl
+
+*Append to the log file
+log using log1, append
+
+*Replace the log file
+log using log1, replace
+
+*Translate the log file so that it can be read with an external text editor
+translate log1.smcl log1.log, replace

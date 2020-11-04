@@ -1,0 +1,20 @@
+*Load auto data
+sysuse auto, clear
+
+*Tabulate repair record against foreign status
+tab rep78 foreign
+
+*Help tabulate
+help tab
+
+*Tabulate repair record against foreign status with Pearson Chi2 test
+tab rep78 foreign, chi2
+
+*Tabulate repair record against foreign status with Pearson Chi2 test and the expected cell counts if there was no association
+tab rep78 foreign, chi2 expected
+
+*Tabulate repair record against foreign status with Pearson Chi2 test and the expected cell counts if there was no association and Fishers exact test
+tab rep78 foreign, chi2 expected exact
+
+*Tabulate repair record against foreign status with all measures of association and Fishers exact test
+tab rep78 foreign, all expected 

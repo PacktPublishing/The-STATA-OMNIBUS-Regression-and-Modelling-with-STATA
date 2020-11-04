@@ -1,0 +1,35 @@
+*Clear all data
+clear
+
+*Load data from file path
+use "/Applications/Stata/auto.dta"
+
+*Load data from the internet
+clear
+use "http://www.stata-press.com/data/r15/auto"
+
+*List all training data
+sysuse dir
+
+*Load training data
+sysuse auto, clear
+
+*Input data manually and then list data
+clear
+input var1 var2 
+1 0.1
+2 0.2
+3 0.4
+4 0.5 
+5 0.6
+end
+
+list
+
+*Help import
+help import
+
+*Import excel data from filepath with firstrow as variable names
+import excel "/Users/buschaf/Data/data.xlsx", sheet("Sheet1") firstrow clear
+
+list

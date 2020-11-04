@@ -1,0 +1,31 @@
+*Load auto data
+sysuse auto, clear
+
+*Tabulate repair record
+tab rep78
+
+*Estimate a ordered logit mode for repair record
+ologit rep78 price mpg weight
+
+*Estimate a ordered probit mode for repair record
+oprobit rep78 price mpg weight
+
+*Estimate average marginal effects of the ordered logit model
+margins, dydx(*)
+
+*Install and test the parallel regression assumption of the ordered logit model
+ssc install omodel.pkg, replace
+omodel logit rep78 price mpg weight
+
+*Estimate a multinomial logit model of repair record
+mlogit rep78 price mpg weight
+
+*Estimate a multinomial logit model of repair record and display odds-ratio's
+mlogit rep78 price mpg weight, rrr
+
+*Estimate average marginal effects
+margins, dydx(*)
+
+*Install and test the Independene of Irrelevant Alternatives (IIA) assumption
+net install "http://www.stata.com/stb/stb58/sg155.pkg", replace
+mlogtest, haus

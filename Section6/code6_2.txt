@@ -1,0 +1,14 @@
+*Open the auto training data
+sysuse auto, clear
+
+*browse the raw data
+browse
+
+*browse only the variables make and price
+browse make price 
+
+*browse the first 10 observations
+browse in 1/10
+
+*edit the raw data
+edit

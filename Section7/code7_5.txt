@@ -1,0 +1,30 @@
+*Load auto data
+sysuse auto, clear
+
+*Generate an indicator variable for high price using generate and replace
+generate highprice = 1 if price > 6000
+replace highprice = 0 if price <= 6000
+tab highprice
+
+*Generate an indicator variable for high price using recode
+recode price (min/6000 = 0) (else = 1), gen(highprice2)
+tab highprice2
+
+*Generate an indicator variable for high price using tabulate
+tab rep78, gen(repdummy)
+su repdummy*
+
+*Using autocode to generate spaced category
+generate pricecat = autocode(price,10,3000, 16000)
+tab pricecat
+
+*Using inlist as a shortcut
+generate repair = 0 if rep78 == 1 | rep78 == 2
+replace repair = 1 if rep78 == 2 | rep78 == 3 | rep78 == 4
+
+generate repair = 0 if inlist(rep78, 1, 2)
+replace repair = 1 if inlist(rep78, 3, 4, 5)
+tab repair
+
+
+

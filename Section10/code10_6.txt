@@ -1,0 +1,38 @@
+*Load auto data
+sysuse auto, clear
+
+*Install software to use esttab and outreg2
+ssc install estout, replace
+ssc install outreg2, replace
+
+*Initial regressions
+reg price mpg
+reg price mpg length
+reg price mpg length turn
+
+*Help file entry for estimates
+help estimates
+
+*Initial regressions wioth stores estimates
+reg price mpg
+estimate store a1
+reg price mpg length
+estimate store a2
+reg price mpg length turn
+estimate store a3
+
+*See stored estimates
+estimates dir
+
+*Replay stored estimates
+estimates replay a1
+
+*Create table with estimates table
+estimates table a1 a2 a3
+estimates table a1 a2 a3, se
+
+*Create table with esttab command with standard error option
+esttab a1 a2 a3, se
+
+*Using outreg2
+outreg2 [a1 a2 a3], replace

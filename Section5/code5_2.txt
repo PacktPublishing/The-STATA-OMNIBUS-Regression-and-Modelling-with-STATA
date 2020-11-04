@@ -1,0 +1,24 @@
+*Using SET command to set preferences
+*EXAMPLES
+
+*Increase the number of variables that can be loaded
+set maxvar 120000
+
+*Increase the matrix size and therefore model size
+set maxsize 11000
+
+*Tell Stata to pause/not pause for more message
+set more off
+set more on
+
+*Set the confidence level to 90%
+set level 90
+
+*Debug programms and command with trace
+set trace on
+set trace off
+
+*Return how long it takes to run the command the the timestamp
+set rmsg on
+set rmsg off
+

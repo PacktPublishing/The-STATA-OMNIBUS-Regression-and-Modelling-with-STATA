@@ -1,0 +1,25 @@
+*clear any data
+clear
+
+*set observations
+set obs 100000
+
+*generate data
+gen x = rnormal()
+gen y = rnormal()
+
+*normal scatter plot
+scatter y x
+
+*sunflower plot
+sunflower y x
+
+*sunflower plot without bins
+sunflower y x, flower
+
+*sunflower plot with different bin widths
+sunflower y x, binw(0.5)
+sunflower y x, binw(0.1)
+
+*sunflower plot as a two-way plot with a linear fit superimposed
+tw (sunflower y x) (lfit y x)

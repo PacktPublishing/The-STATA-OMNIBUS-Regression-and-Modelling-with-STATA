@@ -1,0 +1,11 @@
+*Load auto data
+sysuse auto, clear
+
+*Help etnry for regression
+help regress
+
+*OLS regression of price using mpg, weight and length as explanatory variables
+regress price mpg weight length
+
+*OLS regression of price using mpg, weight, length and turn as explanatory variables
+regress price mpg weight length turn
